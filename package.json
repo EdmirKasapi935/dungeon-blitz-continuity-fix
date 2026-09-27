@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "version": "1.5.22",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd src/server && nodemon --ext ts,js --exec \"node tools/runDevServer.js\"",
+    "dev:discord:game": "cd src/server && nodemon --ext ts,js --exec \"node tools/runDevServer.js\"",
+    "dev:discord:bridge": "cd src/server && ts-node tools/discordLocalBridge.ts discord-bridge.dev.config.json",
+    "dev:discord": "concurrently -n game,discord -c green,magenta \"npm:dev:discord:game\" \"npm:dev:discord:bridge\"",
+    "dev:sync-debug": "cd src/server && cross-env GAMELOG_SYNC_NOISE=1 nodemon --ext ts,js --exec \"node tools/runDevServer.js\"",
+    "dev:dungeon-trace": "cd src/server && cross-env GAMELOG_DUNGEON_TRACE=1 nodemon --ext ts,js --exec \"node tools/runDevServer.js\"",
+    "multiplayer": "npm --prefix src/server run multiplayer",
+    "dev:discord-bridge": "npm --prefix src/server run dev:discord-bridge",
+    "install:discord-social-sdk": "npm --prefix src/server run install:discord-social-sdk",
+    "start:multiplayer:game": "npm --prefix src/server run start:multiplayer:game",
+    "build": "npm --prefix src/server run build",
+    "start:multiplayer": "npm --prefix src/server run start:multiplayer",
+    "start:discord-bridge": "npm --prefix src/server run start:discord-bridge",
+    "start:discord-bridge:multiplayer": "npm --prefix src/server run start:discord-bridge:multiplayer"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "cross-env": "^10.0.0",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
+    "concurrently": "^9.1.0"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "discord-rpc": "^4.0.1",
+    "express": "^5.2.1"
+  }
+}
